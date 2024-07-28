@@ -8,7 +8,7 @@ def error_tool(question_number=5):
     """This function used to retrieve Contextual error questions by taking an int values which is how many questions
     to retrieve and return a dict where keys is questions and values is choices """
 
-    er_df = pd.read_csv(f"{com_dir}\\result.csv", index_col=False)
+    er_df = pd.read_csv(f"{com_dir}\result.csv", index_col=False)
     result = {}
     for i in range(question_number):
         v = randint(1, er_df.shape[0])
@@ -21,7 +21,7 @@ def complate_tool(question_number=5):
     """ This function used to retrieve Complete the sentence questions by taking an int values
      which is how many questions to retrieve and return a dict where keys is questions and values is choices """
 
-    er_df = pd.read_csv(f"{error_dir}\\error.csv", index_col=False)
+    er_df = pd.read_csv(f"{error_dir}\error.csv", index_col=False)
     result = {}
     for i in range(question_number):
         v = randint(1, er_df.shape[0])
