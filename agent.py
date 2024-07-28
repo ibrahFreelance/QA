@@ -21,7 +21,7 @@ async def index(request: Request):
 async def chatbot(question: str = Form(...)):
     try:
         react_system_prompt = PromptTemplate(before_chat_prompt)
-        agent = ReActAgent.from_tools([error, complate], llm=OpenAI(model="gpt-4o"), verbose=False)
+        agent = ReActAgent.from_tools([error, complate], llm=OpenAI(model="gpt-4o"), verbose=True)
         agent.update_prompts({"agent_worker:system_prompt": react_system_prompt})
         response = agent.chat(question)
         return JSONResponse(content={"response": response.response})
