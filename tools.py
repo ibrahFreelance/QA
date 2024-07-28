@@ -12,7 +12,7 @@ def error_tool(question_number=5):
     result = {}
     for i in range(question_number):
         v = randint(1, er_df.shape[0])
-        result[er_df['questions'][v]] = er_df['choices'][i]
+        result[er_df['questions'][v]] = er_df['choices'][v]
 
     return result
 
@@ -25,11 +25,10 @@ def complate_tool(question_number=5):
     result = {}
     for i in range(question_number):
         v = randint(1, er_df.shape[0])
-        result[er_df['questions'][v]] = er_df['choices'][i]
+        #print(er_df['questions'][v], er_df['choices'][v])
+        result[er_df['questions'][v]] = er_df['choices'][v]
     return result
 
 
-error = FunctionTool.from_defaults(fn=error_tool,name="contextual_error")
-complate = FunctionTool.from_defaults(fn=complate_tool,name="Complete_the_sentence")
-
-
+error = FunctionTool.from_defaults(fn=error_tool, name="contextual_error")
+complate = FunctionTool.from_defaults(fn=complate_tool, name="Complete_the_sentence")
