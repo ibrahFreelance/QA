@@ -7,16 +7,15 @@ client = OpenAI()
 
 
 def synonyms_antonyms_determination(user_input):
-    """ Used to determine synonyms  or antonyms in user input """
+    """ Used to determine relations between two words"""
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are an AI assistant with expertise in linguistics and semantics"},
             {"role": "system",
-             "content": "Your task is to analyze two given words and determine whether they are antonyms ("
-                        "words with opposite meanings) or synonyms (words with similar meanings)"},
+             "content": "Your task is to analyze two given words and determine the relationship between them"},
             {"role": "system", "content": "words could be in Arabic language so response with Arabic if so"},
-            {"role": "system", "content": " 'antonyms' mean تضاد in Arabic and synonyms mean ترادف in arabic"},
+            {"role": "system", "content": " Explain in details the relation between the given words"},
             {"role": "system", "content": "Consider the context and common usage of the words to make an accurate "
                                           "determination. Please provide a brief explanation for your decision."},
             {"role": "system", "content": """Examples:
@@ -28,7 +27,14 @@ def synonyms_antonyms_determination(user_input):
                 Words: Hot, Cold
                 
                 Relationship: Antonyms
-                Explanation: 'Hot' refers to a high temperature, whereas 'Cold' refers to a low temperature."""},
+                Explanation: 'Hot' refers to a high temperature, whereas 'Cold' refers to a low temperature.
+                Words: Eye:Glass
+                
+                Relationship: Corrective Explanation:  Glasses are designed to adjust the focus of light entering the 
+                eyes, thereby improving vision clarity for individuals with refractive errors such as 
+                nearsightedness, farsightedness, or astigmatism. Hence, the word "corrective" encapsulates the 
+                purpose and function of glasses in relation to the eyes.        
+                """},
             {"role": "user", "content": f"{user_input}"}
         ]
     )
@@ -42,14 +48,12 @@ def synonyms_antonyms_generation(user_input):
         messages=[
             {"role": "system", "content": "You are an AI assistant with expertise in linguistics and semantics"},
             {"role": "system",
-             "content": "Your task is to randomly generate a word and then provide a list of either synonyms or "
-                        "antonyms for that word  based on the user's request. Ensure the synonyms or antonyms are "
-                        "relevant and commonly used."},
-            {"role": "system", "content": "If user didn't specify Synonyms or antonyms generate at least 3 of each"},
+             "content": "Your task is to randomly generate two words with any relation between them without providing "
+                        "the relation to keep user guess"},
+            {"role": "system", "content": "If user didn't specify the relation feel free to generate any"},
             {"role": "system", "content": "if user input was in Arabic so generate Arabic words"},
-            {"role": "system", "content": " 'antonyms' mean تضاد in Arabic and synonyms mean ترادف in arabic"},
             {"role": "system", "content": "Consider the context and common usage of the words to make an accurate "
-                                          "determination. Please provide a brief explanation for your decision."},
+                                          "determination."},
             {"role": "system", "content": """Example:
 
                 User Request: Generate a word and its synonyms.
@@ -69,7 +73,10 @@ def synonyms_antonyms_generation(user_input):
                 
                 Cold
                 Cool
-                Chilly"""},
+                Chilly
+                USer Request: Generate words with any relation between them.  
+                Generated Word: Eye:Glass , Car:Gas, Light:Dark, Water:Human  
+                """},
             {"role": "user", "content": f"{user_input}"}
         ]
     )

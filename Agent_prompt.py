@@ -56,9 +56,7 @@ Answer: Sorry, I cannot answer your query.
 ## Additional Rules
 - Make sure to enter a fully understandable question for the tool you selected.
 - be careful not to change the question meaning when rephrase.
-- Be careful with meaning like rate for example feed rate different than feed.
-- To predict after how many days the farm will be able to be harvest you first 
-need to get the maximum daily_weight for this farm by retrieving it from by using broilers tool.
+- IF user input enter two word this meaning he want to know the relation between them.
 
 # Current Conversation
 Below is the current conversation consisting of interleaving human and assistant messages.
